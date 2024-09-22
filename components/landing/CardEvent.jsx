@@ -5,17 +5,22 @@ import ActionButton from "../ActionButton";
 
 const CardEvent = ({ event }) => {
   return (
-    <div className="overflow-hidden rounded-md bg-[#242526]">
-      <Image
-        src={event.imageUrl}
-        alt={event.name}
-        className="w-full"
-        width={500}
-        height={500}
-      />
+    <div className=" h-[360px] relative overflow-hidden rounded-md bg-[#242526]">
+      <Link href={`/details/${event?.id}`}>
+        <Image
+          src={event.imageUrl}
+          alt={event.name}
+          className="w-full h-[200px] hover:grayscale"
+          width={500}
+          height={500}
+        />
+      </Link>
 
-      <div className="p-3">
-        <Link href={`/details/${event?.id}`} className="font-bold text-lg">
+      <div className=" absolute w-full bottom-0 p-3">
+        <Link
+          href={`/details/${event?.id}`}
+          className="font-bold hover:underline text-lg"
+        >
           {event.name}
         </Link>
         <p className="text-[#9C9C9C] text-sm mt-1">{event.location}</p>
