@@ -1,3 +1,4 @@
+import { userModel } from "@/models/user-model";
 import {
   replaceMongoIdInArray,
   replaceMongoIdInObjet,
@@ -14,4 +15,7 @@ async function getEventById(eventId) {
   const event = await eventModel.findById(eventId).lean();
   return replaceMongoIdInObjet(event);
 }
-export { getAllEvent, getEventById };
+async function createUser(user) {
+  return await userModel.create(user);
+}
+export { getAllEvent, getEventById, createUser };
