@@ -21,7 +21,10 @@ async function createUser(user) {
 
 async function findUserByCredential(credential) {
   const user = await userModel.findOne(credential).lean();
-  return user;
+  if (user) {
+    return replaceMongoIdInObjet(user);
+  }
+  return null;
 }
 
 export { getAllEvent, getEventById, createUser, findUserByCredential };

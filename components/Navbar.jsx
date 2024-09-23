@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import UserCheck from "./auth/UserCheck";
 
 const Navbar = () => {
   return (
@@ -19,7 +20,7 @@ const Navbar = () => {
 
         <ul className="flex gap-4 text-[#9C9C9C]">
           <li>
-            <Link href={"/login"}>Login</Link>
+            <UserCheck />
           </li>
           <li>About</li>
           <li>Contact Us</li>
