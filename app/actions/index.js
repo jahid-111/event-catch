@@ -1,8 +1,13 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-const { createUser, findUserByCredential } = require("@/db/queries");
+const {
+  createUser,
+  findUserByCredential,
+  updateInterest,
+} = require("@/db/queries");
 
 async function registerUser(formData) {
   const user = Object.fromEntries(formData);
@@ -26,4 +31,14 @@ async function performLogin(formData) {
     throw new Error(`User not valid with "${formData.get("email")}"`);
   }
 }
-export { registerUser, performLogin };
+
+async function addInterestEvent(eventId, authId) {
+  try {
+    await updateInterest(eventId, authId);
+  } catch (error) {
+    throw error;
+  }
+  revalidatePath("/");
+}
+
+export { registerUser, performLogin, addInterestEvent };
