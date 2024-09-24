@@ -7,6 +7,7 @@ const {
   createUser,
   findUserByCredential,
   updateInterest,
+  updateGoing,
 } = require("@/db/queries");
 
 async function registerUser(formData) {
@@ -41,4 +42,15 @@ async function addInterestEvent(eventId, authId) {
   revalidatePath("/");
 }
 
-export { registerUser, performLogin, addInterestEvent };
+async function addGoingEvent(eventId, user) {
+  try {
+    await updateGoing(eventId, user?.id);
+
+    revalidatePath("/");
+    redirect("/");
+  } catch (error) {
+    throw error;
+  }
+}
+
+export { registerUser, performLogin, addInterestEvent, addGoingEvent };
