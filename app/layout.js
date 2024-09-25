@@ -3,7 +3,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { dbConnect } from "@/services/mongo";
 import AuthProvider from "./provider/AuthProvider";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -32,6 +33,7 @@ export default async function RootLayout({ children }) {
           <Navbar />
           <main className=" py-8">{children}</main>
         </AuthProvider>
+        <ToastContainer />
       </body>
     </html>
   );

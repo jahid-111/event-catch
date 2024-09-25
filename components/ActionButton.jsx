@@ -5,6 +5,8 @@ import useAuth from "@/app/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import React, { useState, useTransition } from "react";
 
+import { toast } from "react-toastify";
+
 const ActionButton = ({
   eventId,
   interestedUserIds,
@@ -12,7 +14,6 @@ const ActionButton = ({
   goingUserIds,
 }) => {
   const { auth } = useAuth();
-
   const isInterested = interestedUserIds.find((id) => id === auth?.id);
   const isGoing = goingUserIds?.find((id) => id === auth?.id);
 
@@ -25,8 +26,14 @@ const ActionButton = ({
     if (auth) {
       await addInterestEvent(eventId, auth?.id);
       setInterested(!interested);
+      if (!interested) {
+        toast.success("Hopefully, We are Counting You 🤗");
+      } else {
+        toast.success("See you Soon");
+      }
     } else {
       router.push("/login");
+      toast.error("Please Login");
     }
   }
 
@@ -34,6 +41,7 @@ const ActionButton = ({
     if (auth) {
       router.push(`/payment/${eventId}`);
     } else {
+      toast.error("Please Login");
       router.push("/login");
     }
   };

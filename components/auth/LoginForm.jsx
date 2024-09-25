@@ -3,6 +3,7 @@ import { performLogin } from "@/app/actions";
 import useAuth from "@/app/hooks/useAuth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const [error, setError] = useState("");
@@ -18,9 +19,10 @@ const LoginForm = () => {
 
       if (userFound) {
         setAuth(userFound);
+        toast.success("Successfully Login");
         router.push("/");
       } else {
-        setError("Invalid email or password. Please try again.");
+        setError("Invalid email or password. Please try again. 🥲");
       }
     } catch (error) {
       setError(error.message || "An unexpected error occurred.");
