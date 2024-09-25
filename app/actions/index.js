@@ -40,7 +40,7 @@ async function addInterestEvent(eventId, authId) {
   try {
     await updateInterest(eventId, authId);
   } catch (error) {
-    throw error;
+    throw new Error("Server Says : User not Found");
   }
   revalidatePath("/");
 }

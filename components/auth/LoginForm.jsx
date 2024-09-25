@@ -20,10 +20,10 @@ const LoginForm = () => {
         setAuth(userFound);
         router.push("/");
       } else {
-        setError("not valid");
+        setError("Invalid email or password. Please try again.");
       }
     } catch (error) {
-      setError(error.message);
+      setError(error.message || "An unexpected error occurred.");
     }
   }
 

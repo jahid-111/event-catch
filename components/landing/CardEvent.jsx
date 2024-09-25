@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import ActionButton from "../ActionButton";
+import EventSchemaScript from "../meta/EventSchemaScript";
 
 const CardEvent = ({ event }) => {
   return (
     <div className=" h-[360px] relative overflow-hidden rounded-md bg-[#242526]">
+      <EventSchemaScript event={event} />
       <Link href={`/details/${event?.id}`}>
         <Image
           src={event.imageUrl}
