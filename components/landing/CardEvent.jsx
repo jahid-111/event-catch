@@ -3,8 +3,11 @@ import Link from "next/link";
 import React from "react";
 import ActionButton from "../ActionButton";
 import EventSchemaScript from "../meta/EventSchemaScript";
+import { getBlurData } from "@/utils/blur-generator";
 
-const CardEvent = ({ event }) => {
+const CardEvent = async ({ event }) => {
+  const { base64 } = await getBlurData(event?.imageUrl);
+
   return (
     <div className=" h-[360px] relative overflow-hidden rounded-md bg-[#242526]">
       <EventSchemaScript event={event} />
@@ -15,6 +18,8 @@ const CardEvent = ({ event }) => {
           className="w-full h-[200px] hover:grayscale"
           width={500}
           height={500}
+          placeholder="blur"
+          blurDataURL={base64}
         />
       </Link>
 

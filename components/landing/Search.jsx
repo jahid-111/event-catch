@@ -10,6 +10,7 @@ const Search = () => {
   const { replace } = useRouter();
 
   const debouncedSearch = useDebounce((term) => {
+    //Debounce cache user data for the first time
     const params = new URLSearchParams(searchParams);
     if (term) {
       params.set("query", term);
